@@ -6,27 +6,25 @@
     <title>Scrum Master Career Path - Agile Insights</title>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Merriweather:wght@400;700&family=Open+Sans:wght@400;600;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Lora:wght@400;500;600;700&family=Roboto:wght@400;500;700&display=swap" rel="stylesheet">
     <style>
         :root {
-            --font-serif: 'Merriweather', serif;
-            --font-sans: 'Open Sans', sans-serif;
+            --font-serif-wsj: 'Lora', serif;
+            --font-sans-wsj: 'Roboto', sans-serif;
 
-            --color-text: #333333;
-            --color-text-light: #555555;
-            --color-heading: #000000;
-            --color-background: #FFFFFF;
-            --color-background-alt: #F8F8F8;
-            --color-border: #E0E0E0;
-            --color-border-strong: #CCCCCC;
-            --color-accent: #005A9C; /* A more NYT-esque blue accent for links */
-            --color-accent-secondary: #28a745;
+            --wsj-black: #000000;
+            --wsj-text-primary: #1D1D1F; /* Slightly off-black for text */
+            --wsj-text-secondary: #5A5A5A;
+            --wsj-text-tertiary: #888888;
+            --wsj-background: #FFFFFF;
+            --wsj-background-alt: #F7F7F7; /* Subtle off-white */
+            --wsj-border: #DCDCDC;
+            --wsj-border-strong: #BFBFBF;
+            --wsj-accent-blue: #00589c; /* A common WSJ blue */
+            --wsj-link-hover: #003f70;
+            --wsj-scrumguide-green: #1e8449; /* A distinct green for Scrum Guide */
 
-            --linkedin-color: #0A66C2;
-            --twitter-color: #1DA1F2; /* Official blue, or #000 for X */
-
-            --header-height: 140px; /* Approximate height for main header, adjust as needed */
-            --top-bar-height: 40px; /* Approximate height for top bar */
+            --header-total-height: 120px; /* Approx. sum of top-bar and main-nav heights */
         }
 
         html {
@@ -34,14 +32,14 @@
         }
 
         body {
-            font-family: var(--font-sans);
-            line-height: 1.7;
+            font-family: var(--font-sans-wsj);
+            line-height: 1.65;
             margin: 0;
             padding: 0;
-            background-color: var(--color-background);
-            color: var(--color-text);
+            background-color: var(--wsj-background);
+            color: var(--wsj-text-primary);
             font-size: 16px;
-            padding-top: calc(var(--top-bar-height) + var(--header-height)); /* Add padding to body to prevent content from being hidden by fixed header */
+            padding-top: var(--header-total-height);
         }
 
         .container {
@@ -51,112 +49,116 @@
             padding: 0 15px;
         }
 
-        /* --- Top Bar for Date --- */
-        .top-bar {
-            background-color: var(--color-background-alt);
-            border-bottom: 1px solid var(--color-border);
+        /* --- Top Info Bar (for Date) --- */
+        .top-info-bar {
+            background-color: var(--wsj-background-alt);
+            border-bottom: 1px solid var(--wsj-border);
             padding: 8px 0;
             font-size: 0.85em;
-            color: var(--color-text-light);
-            position: fixed; /* Fixed position */
+            color: var(--wsj-text-secondary);
+            position: fixed;
             top: 0;
             left: 0;
             right: 0;
-            z-index: 1001; /* Higher z-index than main header */
-            height: var(--top-bar-height);
-            display: flex;
-            align-items: center;
+            z-index: 1001;
+            height: 35px; /* Fixed height */
         }
-        .top-bar .container {
+        .top-info-bar .container {
             display: flex;
-            justify-content: space-between;
+            justify-content: flex-end; /* Date on the right */
             align-items: center;
-            width: 100%; /* Ensure container takes full width of top-bar */
+            height: 100%;
         }
-        #current-date {
-            font-weight: 600;
+        #current-date-wsj {
+            font-weight: 500;
         }
 
-        /* --- Header --- */
-        .main-header {
-            padding: 25px 0;
-            border-bottom: 1px solid var(--color-border-strong);
-            background-color: var(--color-background);
-            position: fixed; /* Fixed position */
-            top: var(--top-bar-height); /* Position below the top bar */
+        /* --- Main Header --- */
+        .main-header-wsj {
+            background-color: var(--wsj-background);
+            border-bottom: 1px solid var(--wsj-black); /* Stronger border like WSJ */
+            padding: 15px 0;
+            position: fixed;
+            top: 35px; /* Below top-info-bar */
             left: 0;
             right: 0;
-            z-index: 1000; /* Ensure it's above content */
-            height: var(--header-height);
-            box-shadow: 0 2px 5px rgba(0,0,0,0.05); /* Subtle shadow for fixed header */
+            z-index: 1000;
+            height: calc(var(--header-total-height) - 35px);
+            box-shadow: 0 2px 4px rgba(0,0,0,0.05);
         }
 
-        .main-header .container {
-            text-align: center;
+        .main-header-wsj .container {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            height: 100%;
         }
 
-        .site-title {
-            font-family: var(--font-serif);
-            font-size: 2.8em;
-            color: var(--color-heading);
-            margin: 0 0 20px 0;
+        .site-title-wsj {
+            font-family: var(--font-serif-wsj);
+            font-size: 2.4em; /* Prominent WSJ-style title */
+            color: var(--wsj-black);
+            margin: 0 0 10px 0;
             font-weight: 700;
-            letter-spacing: -0.5px;
+            text-transform: uppercase; /* Often seen in WSJ branding */
+            letter-spacing: 0.5px;
         }
-        .site-title a {
+        .site-title-wsj a {
             text-decoration: none;
             color: inherit;
         }
 
-        nav ul {
+        nav.main-nav-wsj ul {
             list-style: none;
             padding: 0;
             margin: 0;
             display: flex;
             justify-content: center;
             flex-wrap: wrap;
-            border-top: 1px solid var(--color-border);
-            padding-top: 15px;
         }
 
-        nav ul li {
-            margin: 0 10px; /* Adjusted margin */
+        nav.main-nav-wsj ul li {
+            margin: 0 10px;
         }
 
-        nav ul li a {
-            color: var(--color-text);
+        nav.main-nav-wsj ul li a {
+            color: var(--wsj-text-primary);
             text-decoration: none;
-            font-weight: 600;
-            font-size: 0.9em; /* Slightly smaller for more links */
+            font-weight: 500;
+            font-size: 0.9em;
             padding: 5px 0;
             border-bottom: 2px solid transparent;
             transition: color 0.2s ease, border-bottom-color 0.2s ease;
+            text-transform: uppercase; /* WSJ nav often uppercase */
+            letter-spacing: 0.5px;
         }
-        nav ul li a.scrum-guide-link { /* Special style for Scrum Guide link */
-            color: var(--color-accent-secondary); /* Using the green accent */
+        nav.main-nav-wsj ul li a:hover,
+        nav.main-nav-wsj ul li a.active {
+            color: var(--wsj-accent-blue);
+            border-bottom-color: var(--wsj-accent-blue);
+        }
+        nav.main-nav-wsj ul li a.scrum-guide-link-wsj {
+            color: var(--wsj-scrumguide-green); /* Distinct color for this important link */
             font-weight: 700;
         }
-        nav ul li a.scrum-guide-link:hover {
-            color: #1e7e34; /* Darker green on hover */
-            border-bottom-color: #1e7e34;
+        nav.main-nav-wsj ul li a.scrum-guide-link-wsj:hover {
+            color: #145a32; /* Darker green */
+            border-bottom-color: #145a32;
         }
 
-        nav ul li a:hover:not(.scrum-guide-link), nav ul li a.active:not(.scrum-guide-link) {
-            color: var(--color-accent);
-            border-bottom-color: var(--color-accent);
-        }
 
         /* --- Main Content Area --- */
-        main.container { /* The main content should not have top padding as body handles it */
-             padding-top: 20px; /* Add some space between fixed header and first section */
+        main.container {
+             padding-top: 30px;
+             padding-bottom: 30px;
         }
-
 
         /* --- Sections --- */
         section {
             padding: 30px 0;
-            margin-bottom: 25px;
-            border-bottom: 1px solid var(--color-border);
+            margin-bottom: 30px;
+            border-bottom: 1px solid var(--wsj-border);
         }
         section:last-of-type {
             border-bottom: none;
@@ -164,31 +166,36 @@
         }
 
         h2 { /* Section Titles */
-            font-family: var(--font-serif);
-            font-size: 2em;
-            color: var(--color-heading);
+            font-family: var(--font-serif-wsj);
+            font-size: 1.8em; /* WSJ often uses a slightly smaller H2 than H1 */
+            color: var(--wsj-black);
             margin-top: 0;
-            margin-bottom: 25px;
-            font-weight: 700;
+            margin-bottom: 20px;
+            font-weight: 600; /* Slightly less than title */
+            padding-bottom: 8px;
+            border-bottom: 2px solid var(--wsj-black); /* Strong underline for section heads */
             display: flex;
             align-items: center;
-            border-bottom: 1px solid var(--color-border-strong);
-            padding-bottom: 10px;
         }
 
         h2 .section-icon {
-            width: 24px;
-            height: 24px;
-            margin-right: 12px;
-            fill: var(--color-text);
-            opacity: 0.7;
+            width: 20px;
+            height: 20px;
+            margin-right: 10px;
+            fill: var(--wsj-text-secondary); /* Monochrome icon */
+            opacity: 0.8;
         }
-         h2 .section-icon.linkedin { fill: var(--linkedin-color); opacity: 1;}
-         h2 .section-icon.twitter { fill: var(--twitter-color); opacity: 1;}
+         h2 .section-icon.linkedin, h2 .section-icon.twitter { /* Use accent for social icons */
+             fill: var(--wsj-accent-blue);
+             opacity: 1;
+         }
 
+
+        /* --- Table Styling --- */
         .table-container {
             overflow-x: auto;
             margin-top: 20px;
+            border: 1px solid var(--wsj-border);
         }
         table {
             width: 100%;
@@ -196,69 +203,76 @@
             font-size: 0.95em;
         }
         th, td {
-            border: 1px solid var(--color-border);
+            border-bottom: 1px solid var(--wsj-border);
             padding: 10px 12px;
             text-align: left;
             vertical-align: top;
         }
         th {
-            background-color: var(--color-background-alt);
+            background-color: var(--wsj-background-alt);
             font-weight: 700;
-            color: var(--color-heading);
-            font-family: var(--font-sans);
+            color: var(--wsj-black);
+            text-transform: uppercase;
+            font-size: 0.85em;
+            letter-spacing: 0.5px;
         }
-        tbody tr:nth-child(even) {
-            background-color: var(--color-background-alt);
+        tbody tr:last-child td {
+            border-bottom: none;
         }
-        tbody tr:hover {
-            background-color: #f0f0f0;
+        tbody tr:hover td {
+            background-color: #f0f4f8; /* Subtle blueish hover for WSJ */
         }
 
+        /* --- Standard List Styling (used in table and some sections) --- */
         ul.standard-list {
             list-style: none;
-            padding: 0;
+            padding-left: 0; /* Reset default padding */
             margin: 0;
         }
         ul.standard-list li {
-            padding-left: 15px;
-            margin-bottom: 8px;
-            line-height: 1.6;
+            padding-left: 1.2em; /* Space for custom bullet */
+            margin-bottom: 6px;
+            line-height: 1.5;
             position: relative;
+            color: var(--wsj-text-secondary);
         }
         ul.standard-list li::before {
-            content: "–";
+            content: "▪"; /* Square bullet, common in formal docs */
             position: absolute;
-            left: 0px; /* Adjusted from -15px */
-            color: var(--color-text-light);
+            left: 0;
+            color: var(--wsj-accent-blue);
+            font-size: 0.8em;
+            top: 0.1em; /* Align bullet */
         }
+        ul.standard-list strong { color: var(--wsj-text-primary); }
 
+
+        /* --- Grid Container (Tools, Certs) --- */
         .grid-container {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            grid-template-columns: repeat(auto-fit, minmax(270px, 1fr));
             gap: 25px;
         }
         .grid-item {
-            background-color: var(--color-background);
+            background-color: var(--wsj-background);
             padding: 20px;
-            border: 1px solid var(--color-border);
-            border-radius: 0;
+            border: 1px solid var(--wsj-border);
         }
         .grid-item h3 {
-            font-family: var(--font-sans);
-            font-size: 1.2em;
-            color: var(--color-heading);
+            font-family: var(--font-sans-wsj); /* Sans-serif for these subheads */
+            font-size: 1.1em;
+            color: var(--wsj-black);
             margin-top: 0;
-            margin-bottom: 10px;
+            margin-bottom: 12px;
             font-weight: 700;
             display: flex;
             align-items: center;
         }
         .grid-item .item-icon {
-            width: 20px;
-            height: 20px;
+            width: 18px;
+            height: 18px;
             margin-right: 8px;
-            fill: var(--color-text);
-            opacity: 0.7;
+            fill: var(--wsj-text-secondary);
         }
         .grid-item ul {
             list-style: none;
@@ -266,201 +280,174 @@
             margin: 0;
         }
         .grid-item ul li {
-            margin-bottom: 6px;
+            margin-bottom: 5px;
             font-size: 0.9em;
-            padding-left: 20px;
+            color: var(--wsj-text-secondary);
+            padding-left: 18px;
             position: relative;
         }
         .grid-item ul li::before {
             content: "›";
             position: absolute;
             left: 0;
-            color: var(--color-accent);
+            color: var(--wsj-accent-blue);
             font-weight: bold;
         }
 
+        /* --- Dynamic List Items (Websites, Tools, Social) --- */
+        #websites-container, #tools-links-container, #linkedin-container, #twitter-container {
+            margin-top: 15px;
+        }
         .dynamic-list-item {
-            background-color: var(--color-background);
-            border-bottom: 1px solid var(--color-border);
-            padding: 18px 0;
-            margin-bottom: 0;
+            background-color: var(--wsj-background);
+            border-bottom: 1px solid var(--wsj-border);
+            padding: 15px 0;
             transition: background-color 0.2s ease;
             display: flex;
-            align-items: flex-start;
+            align-items: flex-start; /* Align icon to top of text */
         }
-        .dynamic-list-item:last-child {
-            border-bottom: none;
+         .dynamic-list-item:first-child {
+            border-top: 1px solid var(--wsj-border); /* Add top border to the group */
         }
         .dynamic-list-item:hover {
-            background-color: var(--color-background-alt);
+            background-color: var(--wsj-background-alt);
         }
         .dynamic-list-item .social-icon {
-            width: 20px;
-            height: 20px;
+            width: 18px;
+            height: 18px;
             margin-right: 12px;
             flex-shrink: 0;
-            margin-top: 3px;
+            margin-top: 2px; /* Align with first line */
+            fill: var(--wsj-accent-blue); /* WSJ accent for these icons */
         }
-        .dynamic-list-item .social-icon.linkedin { fill: var(--linkedin-color); }
-        .dynamic-list-item .social-icon.twitter { fill: #000; }
 
         .dynamic-list-item-content h4 {
-            font-family: var(--font-sans);
-            font-size: 1.1em;
-            color: var(--color-heading);
+            font-family: var(--font-serif-wsj); /* Serif for these headlines */
+            font-size: 1.05em;
+            color: var(--wsj-black);
             margin-top: 0;
-            margin-bottom: 4px;
-            font-weight: 700;
+            margin-bottom: 3px;
+            font-weight: 600;
         }
         .dynamic-list-item-content h4 a {
-            color: var(--color-heading);
+            color: var(--wsj-black);
             text-decoration: none;
         }
         .dynamic-list-item-content h4 a:hover {
-            color: var(--color-accent);
+            color: var(--wsj-accent-blue);
             text-decoration: underline;
         }
         .dynamic-list-item-content p {
             margin-bottom: 0;
             font-size: 0.9em;
-            color: var(--color-text-light);
+            color: var(--wsj-text-secondary);
             line-height: 1.5;
         }
         .refresh-note {
-            font-style: italic;
-            font-size: 0.85em;
-            color: var(--color-text-light);
+            font-size: 0.8em;
+            color: var(--wsj-text-tertiary);
             margin-top: 20px;
             text-align: center;
             padding-bottom: 10px;
         }
 
+        /* --- Footer --- */
         footer {
             text-align: center;
-            padding: 30px 0;
-            background: var(--color-background-alt);
-            color: var(--color-text-light);
-            font-size: 0.9em;
+            padding: 25px 20px;
+            background: var(--wsj-background-alt);
+            color: var(--wsj-text-secondary);
+            font-size: 0.85em;
             margin-top: 30px;
-            border-top: 1px solid var(--color-border);
+            border-top: 1px solid var(--wsj-border-strong);
         }
 
-        @media (max-width: 992px) { /* Adjust breakpoint for nav items */
-            nav ul li {
-                margin: 0 8px;
+        /* --- Responsive Adjustments --- */
+        @media (max-width: 992px) { /* Tablet and smaller */
+            nav.main-nav-wsj ul li {
+                margin: 0 6px;
             }
-            nav ul li a {
-                font-size: 0.85em;
+            nav.main-nav-wsj ul li a {
+                font-size: 0.8em;
             }
-            :root { /* Reduce header height on smaller screens if nav wraps */
-                --header-height: 160px; /* Example: allow more space if nav wraps */
+            .site-title-wsj {
+                font-size: 2em;
+            }
+            :root {
+                 --header-total-height: 110px;
+            }
+        }
+
+        @media (max-width: 768px) { /* Mobile */
+            :root {
+                --header-total-height: auto; /* Allow header to grow */
             }
             body {
-                 padding-top: calc(var(--top-bar-height) + var(--header-height));
+                 padding-top: 130px; /* Adjust this based on how header wraps */
             }
-        }
-
-        @media (max-width: 768px) {
-            .site-title {
-                font-size: 2.2em;
+            .top-info-bar {
+                justify-content: center; /* Center date on mobile if desired */
             }
-            nav ul {
-                justify-content: space-around;
+            .main-header-wsj {
+                height: auto;
+                padding-bottom: 10px; /* Add padding if nav wraps */
             }
-            nav ul li {
-                margin: 5px 3px; /* Tighter spacing */
+            .main-header-wsj .container {
+                /* Allow natural flow if nav wraps */
             }
-            nav ul li a {
-                font-size: 0.8em; /* Even smaller on small screens */
+            .site-title-wsj {
+                font-size: 1.8em;
+                margin-bottom: 12px;
+            }
+            nav.main-nav-wsj ul {
+                justify-content: center; /* Center wrapped nav items */
+            }
+             nav.main-nav-wsj ul li {
+                 margin: 3px 5px;
+             }
+            section {
+                padding: 20px 0;
             }
             h2 {
-                font-size: 1.7em;
-            }
-            .grid-container {
-                grid-template-columns: 1fr;
-            }
-            :root { /* Adjust header height further if needed */
-                --header-height: auto; /* Let it grow if nav wraps significantly */
-                 /* Or a larger fixed value if auto causes issues with padding-top */
-            }
-             body {
-                 padding-top: calc(var(--top-bar-height) + 180px); /* Fallback if auto is tricky */
-            }
-             .main-header {
-                height: auto; /* Allow header to expand if nav wraps */
-                padding-bottom: 15px; /* Ensure padding below nav */
+                font-size: 1.6em;
             }
         }
-         @media (max-width: 600px) {
-            nav ul {
-                flex-direction: column;
-                align-items: center;
-                border-top: none;
-            }
-            nav ul li {
-                width: 100%;
-                text-align: center;
-                border-bottom: 1px solid var(--color-border);
-                margin: 0;
-            }
-             nav ul li:last-child {
-                 border-bottom: none;
+         @media (max-width: 480px) {
+             body {
+                 padding-top: 150px; /* Further adjust for very small screens */
              }
-            nav ul li a {
-                display: block;
-                padding: 10px 0;
-                border-bottom: none;
-                font-size: 0.9em; /* Restore reasonable size for vertical nav */
-            }
-            nav ul li a:hover:not(.scrum-guide-link), nav ul li a.active:not(.scrum-guide-link) {
-                background-color: var(--color-background-alt);
-                border-bottom-color: transparent;
-            }
-            .top-bar .container {
-                flex-direction: column;
-                gap: 5px;
-            }
-             :root {
-                --header-height: auto; /* Allow full expansion for vertical nav */
-                --top-bar-height: 60px; /* Allow more space for top bar if content wraps */
-            }
-            body {
-                padding-top: calc(var(--top-bar-height) + 250px); /* Approximate for vertical nav */
-            }
-            .main-header {
-                height: auto; /* Auto height for vertical nav */
-            }
-            .site-title {
-                font-size: 2em;
-                margin-bottom: 15px;
-            }
+             .site-title-wsj {
+                 font-size: 1.5em;
+             }
+             nav.main-nav-wsj ul li a {
+                 font-size: 0.75em;
+             }
          }
     </style>
 </head>
 <body>
 
-    <div class="top-bar">
+    <div class="top-info-bar">
         <div class="container">
-            <span id="current-date"></span>
-            <span>Agile & Scrum Career Insights</span>
+            <span id="current-date-wsj"></span>
         </div>
     </div>
 
-    <header class="main-header">
+    <header class="main-header-wsj">
         <div class="container">
-            <h1 class="site-title"><a href="#">The Scrum Master Journey</a></h1>
-            <nav>
+            <h1 class="site-title-wsj"><a href="#">Scrum Master Insights</a></h1>
+            <nav class="main-nav-wsj">
                 <ul>
-                    <li><a href="#career-levels">Career Levels</a></li>
+                    <li><a href="#career-levels">Levels</a></li>
                     <li><a href="#important-tools-learn">Tools</a></li>
                     <li><a href="#industry-trends">Trends</a></li>
                     <li><a href="#certifications">Certs</a></li>
-                    <li><a href="#technical-knowledge">Tech Skills</a></li>
+                    <li><a href="#technical-knowledge">Skills</a></li>
                     <li><a href="#websites-newsletters">Resources</a></li>
                     <li><a href="#tool-links">Tool Links</a></li>
                     <li><a href="#linkedin-profiles">LinkedIn</a></li>
                     <li><a href="#twitter-accounts">X/Twitter</a></li>
-                    <li><a href="https://scrumguides.org/" target="_blank" rel="noopener noreferrer" class="scrum-guide-link">Scrum Guide</a></li>
+                    <li><a href="https://scrumguides.org/" target="_blank" rel="noopener noreferrer" class="scrum-guide-link-wsj">Scrum Guide</a></li>
                 </ul>
             </nav>
         </div>
@@ -602,20 +589,21 @@
 
     <footer>
         <div class="container">
-            <p>&copy; <span id="current-year"></span> Agile Insights. All Rights Reserved.</p>
+            <p>&copy; <span id="current-year-wsj"></span> Agile Insights. All Rights Reserved.</p>
         </div>
     </footer>
 
     <script>
         document.addEventListener('DOMContentLoaded', () => {
-            console.log("Scrum Master Career Page (NYT Style Fixed Header) Loaded!");
+            console.log("Scrum Master Career Page (WSJ Style) Loaded!");
 
-            function displayDateAndYear() {
-                const dateElement = document.getElementById('current-date');
-                const yearElement = document.getElementById('current-year');
+            function displayDateAndYearWSJ() {
+                const dateElement = document.getElementById('current-date-wsj');
+                const yearElement = document.getElementById('current-year-wsj');
                 const now = new Date();
 
                 if (dateElement) {
+                    // WSJ often uses format like: Saturday, October 26, 2024
                     const options = { weekday: 'long', year: 'numeric', month: 'long', day: 'numeric' };
                     dateElement.textContent = now.toLocaleDateString('en-US', options);
                 }
@@ -623,43 +611,38 @@
                     yearElement.textContent = now.getFullYear();
                 }
             }
-            displayDateAndYear();
+            displayDateAndYearWSJ();
 
-            const linkedinIconSvg = `<svg class="social-icon linkedin" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M19 0h-14c-2.761 0-5 2.239-5 5v14c0 2.761 2.239 5 5 5h14c2.762 0 5-2.239 5-5v-14c0-2.761-2.238-5-5-5zm-11 19h-3v-11h3v11zm-1.5-12.268c-.966 0-1.75-.79-1.75-1.764s.784-1.764 1.75-1.764 1.75.79 1.75 1.764-.783 1.764-1.75 1.764zm13.5 12.268h-3v-5.604c0-3.368-4-3.113-4 0v5.604h-3v-11h3v1.765c1.396-2.586 7-2.777 7 2.476v6.759z"/></svg>`;
-            const twitterIconSvg = `<svg class="social-icon twitter" viewBox="0 0 24 24" fill="currentColor" xmlns="http://www.w3.org/2000/svg"><path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"/></svg>`;
+            const wsjAccentBlue = getComputedStyle(document.documentElement).getPropertyValue('--wsj-accent-blue').trim();
+
+            const linkedinIconSvg = `<svg class="social-icon linkedin" fill="${wsjAccentBlue}" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M19 0h-14c-2.761 0-5 2.239-5 5v14c0 2.761 2.239 5 5 5h14c2.762 0 5-2.239 5-5v-14c0-2.761-2.238-5-5-5zm-11 19h-3v-11h3v11zm-1.5-12.268c-.966 0-1.75-.79-1.75-1.764s.784-1.764 1.75-1.764 1.75.79 1.75 1.764-.783 1.764-1.75 1.764zm13.5 12.268h-3v-5.604c0-3.368-4-3.113-4 0v5.604h-3v-11h3v1.765c1.396-2.586 7-2.777 7 2.476v6.759z"/></svg>`;
+            const twitterIconSvg = `<svg class="social-icon twitter" fill="${wsjAccentBlue}" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"/></svg>`;
+
 
             const websitesData = [
                 { name: "Scrum.org Blog", url: "https://www.scrum.org/resources/blog", description: "Insights and articles from the home of Professional Scrum." },
                 { name: "Scrum Alliance Resources", url: "https://www.scrumalliance.org/resources", description: "Articles, webinars, and case studies on Scrum and Agile." },
                 { name: "Martin Fowler", url: "https://martinfowler.com/", description: "In-depth articles on software design, agile, and development practices." },
-                { name: "Mike Cohn's Blog (Mountain Goat Software)", url: "https://www.mountaingoatsoftware.com/blog", description: "Practical advice on Agile and Scrum from a leading expert." },
-                { name: "Age of Product", url: "https://age-of-product.com/", description: "A rich resource for Scrum Masters, Product Owners, and agile practitioners." },
-                { name: "InfoQ Agile", url: "https://www.infoq.com/agile/", description: "Latest news, articles, and presentations on Agile software development." },
-                { name: "LeadingAgile Blog", url: "https://www.leadingagile.com/blog/", description: "Perspectives on Agile transformation and leadership from industry veterans." }
+                { name: "Mike Cohn's Blog", url: "https://www.mountaingoatsoftware.com/blog", description: "Practical advice on Agile and Scrum from a leading expert (Mountain Goat Software)." },
+                { name: "Age of Product", url: "https://age-of-product.com/", description: "A rich resource for Scrum Masters, Product Owners, and agile practitioners." }
             ];
             const toolsLinkData = [
                 { name: "Jira by Atlassian", url: "https://www.atlassian.com/software/jira", description: "Widely used for agile project management and issue tracking." },
                 { name: "Azure DevOps by Microsoft", url: "https://azure.microsoft.com/en-us/services/devops/", description: "Comprehensive suite for the software development lifecycle." },
                 { name: "Trello", url: "https://trello.com/", description: "Simple, visual Kanban-style collaboration tool." },
-                { name: "Miro", url: "https://miro.com/", description: "Online collaborative whiteboard platform ideal for remote teams." },
-                { name: "Confluence by Atlassian", url: "https://www.atlassian.com/software/confluence", description: "Team collaboration and documentation software." },
-                { name: "Slack", url: "https://slack.com/", description: "Popular channel-based messaging platform for team communication." }
+                { name: "Miro", url: "https://miro.com/", description: "Online collaborative whiteboard platform ideal for remote teams." }
             ];
             const linkedInData = [
                 { name: "Scrum.org", url: "https://www.linkedin.com/school/scrumorg/", description: "Official page for Professional Scrum resources and community updates." },
                 { name: "Scrum Alliance", url: "https://www.linkedin.com/company/scrum-alliance/", description: "Global Scrum and Agile advocacy, events, and certifications." },
                 { name: "Mike Cohn", url: "https://www.linkedin.com/in/mikewcohn/", description: "Author, trainer, and influential Agile/Scrum expert (Mountain Goat Software)." },
-                { name: "Lyssa Adkins", url: "https://www.linkedin.com/in/lyssaadkins/", description: "Renowned Agile/Scrum Coach, author of 'Coaching Agile Teams'." },
-                { name: "Henrik Kniberg", url: "https://www.linkedin.com/in/henrikkniberg/", description: "Agile/Lean coach, author, known for 'Scrum and XP from the Trenches'." },
-                { name: "Jeff Sutherland", url: "https://www.linkedin.com/in/jeffsutherland/", description: "Co-creator of Scrum and CEO of Scrum Inc., shares insights on Agile practices." }
+                { name: "Lyssa Adkins", url: "https://www.linkedin.com/in/lyssaadkins/", description: "Renowned Agile/Scrum Coach, author of 'Coaching Agile Teams'." }
             ];
             const twitterData = [
                 { name: "Scrum.org (@scrumdotorg)", url: "https://twitter.com/scrumdotorg", description: "Official X account for updates, articles, and discussions on Professional Scrum." },
                 { name: "Scrum Alliance (@ScrumAlliance)", url: "https://twitter.com/ScrumAlliance", description: "News, resources, and community engagement from Scrum Alliance." },
                 { name: "Mike Cohn (@mikewcohn)", url: "https://twitter.com/mikewcohn", description: "Agile and Scrum insights, Q&A, and articles from Mike Cohn." },
-                { name: "Martin Fowler (@martinfowler)", url: "https://twitter.com/martinfowler", description: "Thoughts on software development, Agile, patterns, and refactoring." },
-                { name: "Lyssa Adkins (@lyssaadkins)", url: "https://twitter.com/lyssaadkins", description: "Expertise and inspiration on Agile coaching and leadership." },
-                { name: "Ryan Ripley (@ryanripley)", url: "https://twitter.com/ryanripley", description: "Host of Agile for Humans podcast, Professional Scrum Trainer, shares practical tips." }
+                { name: "Martin Fowler (@martinfowler)", url: "https://twitter.com/martinfowler", description: "Thoughts on software development, Agile, patterns, and refactoring." }
             ];
 
             function shuffleArray(array) {
@@ -689,22 +672,21 @@
                 });
             }
 
-            const MAX_ITEMS_DYNAMIC_LIST = 4;
+            const MAX_ITEMS_DYNAMIC_LIST = 3; // WSJ style is often more condensed
             displayDynamicList('websites-container', websitesData, MAX_ITEMS_DYNAMIC_LIST);
             displayDynamicList('tools-links-container', toolsLinkData, MAX_ITEMS_DYNAMIC_LIST);
             displayDynamicList('linkedin-container', linkedInData, MAX_ITEMS_DYNAMIC_LIST, linkedinIconSvg);
             displayDynamicList('twitter-container', twitterData, MAX_ITEMS_DYNAMIC_LIST, twitterIconSvg);
 
-            // Active Nav Link highlighting based on scroll (optional enhancement)
-            // You can add a more sophisticated scroll spy if needed.
-            // This is a simple version.
-            const navLinks = document.querySelectorAll('nav ul li a');
+            const navLinks = document.querySelectorAll('nav.main-nav-wsj ul li a:not(.scrum-guide-link-wsj)');
             const sections = document.querySelectorAll('main section');
+            const headerTotalHeight = parseFloat(getComputedStyle(document.documentElement).getPropertyValue('--header-total-height'));
+
 
             window.addEventListener('scroll', () => {
                 let current = '';
                 sections.forEach(section => {
-                    const sectionTop = section.offsetTop - (document.querySelector('.main-header').offsetHeight + document.querySelector('.top-bar').offsetHeight + 50) ; // Adjusted offset
+                    const sectionTop = section.offsetTop - headerTotalHeight - 20; // Adjusted offset
                     if (pageYOffset >= sectionTop) {
                         current = section.getAttribute('id');
                     }
@@ -717,8 +699,6 @@
                     }
                 });
             });
-
-
         });
     </script>
 
